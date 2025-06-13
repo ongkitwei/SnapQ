@@ -2,3 +2,11 @@
 @plugin "daisyui" {
   themes: light --default, dark --prefersdark;
 }
+@layer components {
+  .landing-header {
+    @apply text-blue-900 font-bold;
+  }
+  .landing-icon {
+    @apply object-cover rounded-xl bg-blue-100 p-3 w-fit h-fit;
+  }
+}
