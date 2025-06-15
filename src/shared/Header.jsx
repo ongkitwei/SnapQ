@@ -1,7 +1,10 @@
+"use client";
 import React from "react";
 import Image from "next/image";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 function Header() {
+  const { data: session, status } = useSession();
   return (
     <div>
       <nav className="flex flex-row items-center justify-between px-8 py-1 border-b border-slate-200">
@@ -26,13 +29,26 @@ function Header() {
             Pricing
           </a>
         </div>
-        <div className="flex flex-row items-center gap-x-4">
-          {" "}
-          <span className="btn btn-active border border-blue-500 text-blue-500 bg-white">
-            Get Started
+        {session ? (
+          <span
+            className="btn btn-active bg-blue-500 text-white"
+            onClick={() => signOut({ callbackUrl: "/" })}
+          >
+            Log Out
           </span>
-          <span className="btn btn-active bg-blue-500 text-white">Log In</span>
-        </div>
+        ) : (
+          <span
+            className="btn btn-active bg-blue-500 text-white"
+            onClick={() =>
+              signIn("google", {
+                callbackUrl: "/home",
+                prompt: "select_account",
+              })
+            }
+          >
+            Log In
+          </span>
+        )}
       </nav>
     </div>
   );

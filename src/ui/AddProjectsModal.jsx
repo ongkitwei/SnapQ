@@ -1,6 +1,6 @@
 import React from "react";
 
-function AddProjectsModal() {
+function AddProjectsModal({ title }) {
   return (
     <dialog id="my_modal_3" className="modal">
       <div className="modal-box">
@@ -10,7 +10,7 @@ function AddProjectsModal() {
             ✕
           </button>
         </form>
-        <h3 className="font-bold text-lg">Hello!</h3>
+        <h3 className="font-bold text-2xl text-center">{title}</h3>
         <p className="py-4">Press ESC key or click on ✕ button to close</p>
       </div>
     </dialog>
