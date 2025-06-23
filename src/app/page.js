@@ -1,8 +1,15 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import Price from "@/ui/Price";
+import { redirect } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
+  const { data: session, status } = useSession();
+  if (session) {
+    redirect("/home");
+  }
   return (
     <div className="flex flex-col min-h-screen w-full overflow-x-hidden items-center justify-center pt-24">
       <div className="flex flex-col md:flex-row gap-x-12 px-14 w-[95%] md:w-[90%] items-center justify-center">

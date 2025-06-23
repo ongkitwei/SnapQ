@@ -1,14 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAtom } from "jotai";
+import axios from "axios";
 import { projectNameAtom } from "../../jotai/ProjectsAtoms";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 function AddProjectsModal({ title }) {
   const [projects, setProjects] = useAtom(projectNameAtom);
   const [projectName, setProjectName] = useState(""); // current input
+  const { data: session, status } = useSession();
 
-  const handleAddButton = () => {
-    setProjects((prev) => [...prev, projectName]);
-    setProjectName("");
+  const handleAddButton = async () => {
+    try {
+      setProjects((prev) => [...prev, projectName]);
+      const response = await axios.post("/api/project", {
+        projectName: projectName,
+        email: session.user.email,
+      });
+      setProjectName("");
+      console.log(response);
+    } catch (error) {
+      console.error("Error:", error.response?.data || error.message);
+    }
   };
 
   return (

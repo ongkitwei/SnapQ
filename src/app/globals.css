@@ -13,3 +13,7 @@
     @apply hover:underline cursor-pointer;
   }
 }
+
+@theme inline {
+  --font-michroma: var(--font-michroma);
+}
