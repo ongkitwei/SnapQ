@@ -20,15 +20,17 @@ function Header() {
           <span className="font-bold rotate-6 text-3xl">Q</span>
         </div>
 
-        <div className="flex-row items-center gap-x-12 hidden md:flex">
-          <a className="nav-hover" href="#about-component">
-            About
-          </a>
-          <span className="nav-hover">Tutorial</span>
-          <a className="nav-hover" href="#pricing-component">
-            Pricing
-          </a>
-        </div>
+        {!session ? (
+          <div className="flex-row items-center gap-x-12 hidden md:flex">
+            <a className="nav-hover" href="#about-component">
+              About
+            </a>
+            <span className="nav-hover">Tutorial</span>
+            <a className="nav-hover" href="#pricing-component">
+              Pricing
+            </a>
+          </div>
+        ) : null}
         {session ? (
           <span
             className="btn btn-active bg-blue-500 text-white"

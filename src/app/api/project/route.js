@@ -2,7 +2,6 @@ import Project from "@/models/projectsModel";
 import User from "@/models/userModel";
 import { NextResponse } from "next/server";
 import connectionToMongoDb from "@/libs/mongoose";
-import { func } from "joi";
 
 export async function POST(request) {
   try {

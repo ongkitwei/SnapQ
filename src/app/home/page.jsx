@@ -49,7 +49,7 @@ function page() {
         </div>
         {projects.map((x, index) => (
           <Link
-            href={`/home/${x._id}}`}
+            href={`/home/${x.project}?id=${x._id}`}
             key={index}
             className="w-[150px] h-[150px] rounded-xl border border-slate-300 text-slate-700 flex items-center justify-center text-xl hover:cursor-pointer font-michroma px-2"
           >
