@@ -18,8 +18,8 @@ export default function Home() {
             No More Standing in Line
           </h1>
           <p className="w-[90%] md:w-[300px] xl:w-[500px] xl:text-xl text-center md:text-start pt-4 md:pt-0 text-slate-800">
-            Scan a QR code, join the queue, and relax. We'll notify you when
-            it's your turn.
+            Scan a QR code, join the queue, and relax. We will notify you when
+            it is your turn.
           </p>
           <div className="flex flex-row items-center justify-center md:justify-center xl:gap-x-36 gap-x-6 w-full pt-4 md:pt-0">
             <button className="btn btn-active btn-info px-6">
