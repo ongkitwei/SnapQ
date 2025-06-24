@@ -16,25 +16,22 @@ function DropDown({
       >
         {dropdownText}
       </div>
-      <ul
+      <div
         tabIndex={0}
-        className="flex flex-col justify-center gap-y-2 p-0 dropdown-content menu rounded-box bg-base-100 z-50 w-64 shadow-sm"
+        className="flex flex-col justify-center gap-y-2 p-0 dropdown-content menu rounded-box bg-base-100 z-50 w-72 shadow-sm"
       >
-        <li>
-          <h2 className="text-xl font-semibold border-b-1 border-slate-200 rounded-none">
-            {dropdownHeader}
-          </h2>
-        </li>
-        <li>
-          <p className="text-sm text-gray-600">{dropdownDescription}</p>
-        </li>
-        <li>{dropdownContent}</li>
-        <li>
-          <button className="btn btn-neutral mt-20 mb-2 w-[90%] m-auto">
-            {dropdownButton}
-          </button>
-        </li>
-      </ul>
+        <h2 className="text-2xl font-semibold border-b-1 border-slate-200 rounded-none">
+          {dropdownHeader}
+        </h2>
+        <p className="text-sm text-gray-600 text-center">
+          {dropdownDescription}
+        </p>
+
+        <p className="px-12">{dropdownContent}</p>
+        <button className="btn btn-neutral mt-12 m-6 w-[90%]">
+          {dropdownButton}
+        </button>
+      </div>
     </div>
   );
 }

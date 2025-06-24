@@ -1,6 +1,6 @@
 "use client";
 import AddProjectsModal from "@/ui/AddProjectsModal";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import axios from "axios";
 import { projectNameAtom } from "../../../jotai/ProjectsAtoms";
@@ -14,15 +14,19 @@ function page() {
   const { data: session, status } = useSession();
   const [projects, setProjects] = useAtom(projectNameAtom);
   const [inputField, setInputField] = useAtom(searchFilterAtom);
+  const [loading, setLoading] = useState(false);
   let id;
 
   useEffect(() => {
     async function getProjects() {
       try {
+        setLoading(true);
         const response = await axios.get("/api/project");
         setProjects(response.data);
       } catch (error) {
         console.error("Error fetching projects:", error);
+      } finally {
+        setLoading(false);
       }
     }
     getProjects();
@@ -35,7 +39,7 @@ function page() {
         {session ? (
           <p className="text-3xl font-semibold">Hello {session.user.name}</p>
         ) : (
-          <span className="loading loading-ring loading-xl"></span>
+          <span className="loading loading-dots loading-md"></span>
         )}
         <SearchInput inputField={inputField} setInputField={setInputField} />
       </div>

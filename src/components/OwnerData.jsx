@@ -17,8 +17,8 @@ function OwnerData({ projectName, qrUrl }) {
           }
           dropdownHeader={
             <>
-              <span className="flex flex-row items-center gap-x-2">
-                <BsQrCodeScan size={17} />
+              <span className="flex flex-row items-center justify-center gap-x-2 font-bold text-2xl py-2">
+                <BsQrCodeScan size={18} />
                 Scan & Wait
               </span>
             </>
@@ -28,8 +28,8 @@ function OwnerData({ projectName, qrUrl }) {
             qrUrl && (
               <Image
                 src={qrUrl}
-                width={600}
-                height={600}
+                width={50}
+                height={50}
                 className="w-full h-auto object-cover"
                 alt="QR Code"
               />
