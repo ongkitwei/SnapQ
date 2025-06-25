@@ -12,6 +12,9 @@
   .nav-hover {
     @apply hover:underline cursor-pointer;
   }
+  .customer-form {
+    @apply w-[320px];
+  }
 }
 
 @theme inline {

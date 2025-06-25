@@ -1,40 +1,87 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import LogoAndText from "@/components/LogoAndText";
+import axios from "axios";
 
 function page() {
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
+  const [customerform, setCustomerform] = useState({
+    customerName: "",
+    customerNumber: "",
+    customerEmail: "",
+    customerStrength: "",
+    projectId: "",
+  });
+
+  async function addCustomer() {
+    try {
+      const response = await axios.post("/api/customer", {
+        customerName: customerform.customerName,
+        customerNumber: customerform.customerNumber,
+        customerEmail: customerform.customerEmail,
+        customerStrength: customerform.customerStrength,
+        projectId: id,
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setCustomerform((x) => ({
+        customerName: "",
+        customerNumber: "",
+        customerEmail: "",
+        customerStrength: "",
+        projectId: "",
+      }));
+    }
+  }
+
   return (
     <div className="w-full min-h-screen flex items-center justify-center">
-      <div className="w-[80%] flex flex-col items-center justify-center h-[600px] bg-white/50 shadow-2xl rounded-2xl">
-        <h1 className="text-3xl font-bold pb-16">
+      <div className="w-[80%] flex flex-col items-center justify-center h-[700px] bg-white/50 shadow-2xl rounded-2xl">
+        <LogoAndText />
+        <h2 className="text-xl md:text-2xl lg:text-3xl text-center font-bold pb-12 pt-12">
           Enter details to get Queue Number
-        </h1>
+        </h2>
         <div className="w-full flex flex-col justify-center items-center">
           {/* User's Name */}
 
-          <fieldset className="fieldset w-[65%]">
+          <fieldset className="fieldset customer-form">
             <legend className="fieldset-legend">What is your name?</legend>
             <input
               type="text"
               className="input w-full"
               placeholder="Type here"
+              value={customerform.customerName}
+              onChange={(e) =>
+                setCustomerform((x) => ({ ...x, customerName: e.target.value }))
+              }
             />
             <p className="label">Optional</p>
           </fieldset>
 
           {/* User's No Of Customers */}
-
           <input
             type="number"
-            className="input validator mt-2.5 w-[65%]"
+            className="input validator mt-2.5 customer-form"
             required
             placeholder="Number of people"
             min="1"
             max="10"
             title="Must be between be 1 to 10"
+            value={customerform.customerStrength}
+            onChange={(e) =>
+              setCustomerform((x) => ({
+                ...x,
+                customerStrength: e.target.value,
+              }))
+            }
           />
           <p className="validator-hint">Must be between be 1 to 10</p>
 
           {/* User's Email */}
-          <label className="input validator w-[65%]">
+          <label className="input validator customer-form">
             <svg
               className="h-[1em] opacity-50"
               xmlns="http://www.w3.org/2000/svg"
@@ -51,12 +98,23 @@ function page() {
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
               </g>
             </svg>
-            <input type="email" placeholder="mail@site.com" required />
+            <input
+              type="email"
+              placeholder="mail@site.com"
+              value={customerform.customerEmail}
+              onChange={(e) =>
+                setCustomerform((x) => ({
+                  ...x,
+                  customerEmail: e.target.value,
+                }))
+              }
+              required
+            />
           </label>
           <div className="validator-hint hidden">Enter valid email address</div>
 
           {/* User's Phone Number */}
-          <label className="input validator w-[65%] mt-7">
+          <label className="input validator mt-7 customer-form">
             <svg
               className="h-[1em] opacity-50"
               xmlns="http://www.w3.org/2000/svg"
@@ -81,13 +139,22 @@ function page() {
               required
               placeholder="Phone"
               pattern="[0-9]*"
-              minLength="10"
-              maxLength="10"
+              minLength="8"
+              maxLength="11"
               title="Must be 10 digits"
+              value={customerform.customerNumber}
+              onChange={(e) =>
+                setCustomerform((x) => ({
+                  ...x,
+                  customerNumber: e.target.value,
+                }))
+              }
             />
           </label>
           <p className="validator-hint">Must be 10 digits</p>
-          <button className="btn btn-info w-[65%]">Get Queue</button>
+          <button className="btn btn-info px-32" onClick={addCustomer}>
+            Get Queue
+          </button>
         </div>
       </div>
     </div>
