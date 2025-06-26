@@ -5,6 +5,7 @@ const projectSchema = new mongoose.Schema({
   customerNumber: { type: String, required: true },
   customerEmail: { type: String, required: true },
   customerStrength: { type: String, required: true },
+  queueNumber: { type: Number, required: true },
   projectId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,

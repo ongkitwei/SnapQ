@@ -14,7 +14,7 @@ export default function ClientPage({ projectName }) {
     const generateQR = async () => {
       try {
         const data = await QRCode.toDataURL(
-          `https://snap-q-inky.vercel.app/customer?id=${id}`
+          `https://snap-q-inky.vercel.app/customer?projectname=${projectName}&id=${id}`
         );
         setQrUrl(data);
       } catch (err) {

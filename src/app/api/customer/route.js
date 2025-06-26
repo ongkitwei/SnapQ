@@ -5,6 +5,18 @@ import connectionToMongoDb from "@/libs/mongoose";
 export async function POST(request) {
   try {
     await connectionToMongoDb();
+
+    // Find No of customers
+    const noOfCustomers = await Customer.countDocuments();
+    let customerQueueNumber = noOfCustomers + 1;
+
+    if (!noOfCustomers) {
+      return NextResponse.json(
+        { error: "Something wrong with customer collection" },
+        { status: 404 }
+      );
+    }
+
     const {
       customerName,
       customerNumber,
@@ -18,6 +30,7 @@ export async function POST(request) {
       customerNumber: customerNumber,
       customerEmail: customerEmail,
       customerStrength: customerStrength,
+      queueNumber: customerQueueNumber,
       projectId: projectId,
     });
     await newCustomer.save();

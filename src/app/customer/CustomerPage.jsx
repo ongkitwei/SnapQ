@@ -1,12 +1,15 @@
 "use client";
 import React, { useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import LogoAndText from "@/components/LogoAndText";
 import axios from "axios";
+import Link from "next/link";
 
 function CustomerPage() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
+  const projectName = searchParams.get("projectname");
   const [customerform, setCustomerform] = useState({
     customerName: "",
     customerNumber: "",
@@ -34,6 +37,7 @@ function CustomerPage() {
         customerStrength: "",
         projectId: "",
       }));
+      router.push(`/customer/queue_number`);
     }
   }
 
@@ -42,7 +46,7 @@ function CustomerPage() {
       <div className="w-[80%] flex flex-col items-center justify-center h-[700px] bg-white/50 shadow-2xl rounded-2xl">
         <LogoAndText />
         <h2 className="text-xl md:text-2xl lg:text-3xl text-center font-bold pb-12 pt-12">
-          Enter details to get Queue Number
+          {`Get Queue Number For ${projectName}`}
         </h2>
         <div className="w-full flex flex-col justify-center items-center">
           {/* User's Name */}
