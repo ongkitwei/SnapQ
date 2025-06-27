@@ -15,6 +15,9 @@ function page() {
   const [projects, setProjects] = useAtom(projectNameAtom);
   const [inputField, setInputField] = useAtom(searchFilterAtom);
   const [loading, setLoading] = useState(false);
+  const filteredProjects = projects.filter((project) =>
+    project.project.toLowerCase().includes(inputField.toLowerCase())
+  );
   let id;
 
   useEffect(() => {
@@ -46,16 +49,16 @@ function page() {
 
       <div className="w-[77%] lg:w-[65%] 2xl:w-[40%] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 place-items-start pt-10">
         <div
-          className="w-[150px] h-[150px] rounded-xl border border-slate-300 text-slate-400 text-4xl flex items-center justify-center hover:cursor-pointer"
+          className="w-[120px] h-[120px] md:w-[150px] md:h-[150px] rounded-xl border border-slate-300 text-slate-400 text-4xl flex items-center justify-center hover:cursor-pointer"
           onClick={() => document.getElementById("my_modal_3").showModal()}
         >
           +
         </div>
-        {projects.map((x, index) => (
+        {filteredProjects.map((x, index) => (
           <Link
             href={`/home/${x.project}?id=${x._id}`}
             key={index}
-            className="w-[150px] h-[150px] rounded-xl border border-slate-300 text-slate-700 flex items-center justify-center text-xl hover:cursor-pointer font-michroma px-2"
+            className="w-[120px] h-[120px] md:w-[150px] md:h-[150px] rounded-xl border border-slate-300 text-slate-700 flex items-center justify-center text-sm md:text-xl hover:cursor-pointer font-michroma px-2"
           >
             <span className="w-full break-words text-center">{x.project}</span>
           </Link>
