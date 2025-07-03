@@ -52,7 +52,11 @@ function page() {
           className="w-[120px] h-[120px] md:w-[150px] md:h-[150px] rounded-xl border border-slate-300 text-slate-400 text-4xl flex items-center justify-center hover:cursor-pointer"
           onClick={() => document.getElementById("my_modal_3").showModal()}
         >
-          +
+          {projects.length > 0 ? (
+            "+"
+          ) : (
+            <span className="loading loading-spinner loading-md"></span>
+          )}
         </div>
         {filteredProjects.map((x, index) => (
           <Link

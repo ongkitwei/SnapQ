@@ -7,7 +7,7 @@ import { BsQrCodeScan } from "react-icons/bs";
 function OwnerData({ projectName, qrUrl }) {
   return (
     <>
-      <div className="w-[50%] flex flex-row items-center justify-between pt-8 pb-4">
+      <div className="w-[70%] md:w-[50%] flex flex-row items-center justify-between pt-8 pb-4">
         <h1 className="font-michroma text-xl">{projectName}</h1>
         <DropDown
           dropdownText={
