@@ -27,7 +27,7 @@ export default function ClientPage({ projectName }) {
 
   return (
     <div className="w-full flex flex-col items-center justify-start min-h-screen">
-      <OwnerData projectName={projectName} qrUrl={qrUrl} />
+      <OwnerData projectName={projectName} qrUrl={qrUrl} projectId={id} />
     </div>
   );
 }

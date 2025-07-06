@@ -1,10 +1,28 @@
 import QueueTable from "@/ui/QueueTable";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DropDown from "@/ui/DropDown";
 import Image from "next/image";
 import { BsQrCodeScan } from "react-icons/bs";
+import axios from "axios";
+import { useAtom } from "jotai";
+import { customerNameAtom } from "../../jotai/CustomersAtoms";
 
-function OwnerData({ projectName, qrUrl }) {
+function OwnerData({ projectName, qrUrl, projectId }) {
+  const [customerData, setCustomerData] = useAtom(customerNameAtom);
+
+  useEffect(() => {
+    async function getCustomers() {
+      const id = projectId;
+      const response = await axios.get("/api/project/queue", {
+        params: { id: id },
+      });
+
+      console.log(response.data);
+      setCustomerData(response.data);
+    }
+    getCustomers();
+  }, []);
+
   return (
     <>
       <div className="w-[70%] md:w-[50%] flex flex-row items-center justify-between pt-8 pb-4">
