@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaRegUserCircle } from "react-icons/fa";
 import { useAtom } from "jotai";
 import { customerNameAtom } from "../../jotai/CustomersAtoms";
-
 function QueueTable() {
   const [customerData, setCustomerData] = useAtom(customerNameAtom);
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto w-full">
       <table className="table">
         {/* head */}
         <thead>

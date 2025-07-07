@@ -18,7 +18,7 @@ function DropDown({
       </div>
       <div
         tabIndex={0}
-        className="flex flex-col justify-center gap-y-2 p-0 dropdown-content menu rounded-box bg-base-100 z-50 w-80 shadow-sm"
+        className="flex flex-col justify-center gap-y-2 p-0 dropdown-content menu rounded-box bg-base-100 z-50 w-60 md:w-80 shadow-sm"
       >
         <h2 className="text-2xl w-full font-semibold border-b-1 border-slate-200 rounded-none">
           {dropdownHeader}

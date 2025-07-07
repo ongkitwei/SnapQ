@@ -21,6 +21,11 @@ function OwnerData({ projectName, qrUrl, projectId }) {
       setCustomerData(response.data);
     }
     getCustomers();
+    // Polling every 5 seconds
+    const interval = setInterval(getCustomers, 8000); // 5000ms = 5s
+
+    // Clean up interval on unmount
+    return () => clearInterval(interval);
   }, []);
 
   return (

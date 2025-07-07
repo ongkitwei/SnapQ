@@ -2,8 +2,9 @@
 import React, { useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import LogoAndText from "@/components/LogoAndText";
+import { useAtom } from "jotai";
+import { customerChangeAtom } from "../../../jotai/CustomersAtoms";
 import axios from "axios";
-import Link from "next/link";
 
 function CustomerPage() {
   const router = useRouter();
@@ -43,7 +44,7 @@ function CustomerPage() {
 
   return (
     <div className="w-full min-h-screen flex items-center justify-center">
-      <div className="w-[80%] flex flex-col items-center justify-center h-[700px] bg-white/50 shadow-2xl rounded-2xl">
+      <div className="w-[95%] md:w-[80%] flex flex-col items-center justify-center h-[700px] bg-white/50 shadow-2xl rounded-2xl">
         <LogoAndText />
         <h2 className="text-xl md:text-2xl lg:text-3xl text-center font-bold pb-12 pt-12">
           {`Get Queue Number For ${projectName}`}
