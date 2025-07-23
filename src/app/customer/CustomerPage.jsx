@@ -5,7 +5,6 @@ import LogoAndText from "@/components/LogoAndText";
 import { useAtom } from "jotai";
 import { customerQueueAtom } from "../../../jotai/CustomersAtoms";
 import axios from "axios";
-import { response } from "express";
 
 function CustomerPage() {
   const router = useRouter();
@@ -32,6 +31,9 @@ function CustomerPage() {
       });
       console.log(response.data.queueNumber);
       setCustomerqueue(response.data.queueNumber);
+      router.push(
+        `/customer/${response.data.projectId}?queueno=${response.data.queueNumber}&projectname=${projectName}`
+      );
     } catch (error) {
       console.error(error);
     } finally {
@@ -42,9 +44,6 @@ function CustomerPage() {
         customerStrength: "",
         projectId: "",
       }));
-      router.push(
-        `/customer/${response.data.projectId}?queueno=${response.data.queueNumber}`
-      );
     }
   }
 

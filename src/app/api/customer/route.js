@@ -10,12 +10,12 @@ export async function POST(request) {
     const noOfCustomers = await Customer.countDocuments();
     let customerQueueNumber = noOfCustomers + 1;
 
-    if (!noOfCustomers) {
-      return NextResponse.json(
-        { error: "Something wrong with customer collection" },
-        { status: 404 }
-      );
-    }
+    // if (!noOfCustomers) {
+    //   return NextResponse.json(
+    //     { error: "Something wrong with customer collection" },
+    //     { status: 404 }
+    //   );
+    // }
 
     const {
       customerName,

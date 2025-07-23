@@ -20,6 +20,7 @@ function QueueTable() {
             <th>Email</th>
             <th>Phone Number</th>
             <th>No of Pax</th>
+            <th>Q No</th>
           </tr>
         </thead>
         {customerData
@@ -55,6 +56,11 @@ function QueueTable() {
                       {x.customerStrength}
                     </button>
                   </th>
+                  <th>
+                    <button className="btn btn-ghost btn-xs">
+                      {x.queueNumber}
+                    </button>
+                  </th>
                 </tr>
               </tbody>
             ))
@@ -67,6 +73,7 @@ function QueueTable() {
             <th>Email</th>
             <th>Phone Number</th>
             <th>No of Pax</th>
+            <th>Q No</th>
             <th></th>
           </tr>
         </tfoot>
