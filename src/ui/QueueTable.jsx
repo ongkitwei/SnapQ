@@ -6,7 +6,7 @@ function QueueTable() {
   const [customerData, setCustomerData] = useAtom(customerNameAtom);
 
   return (
-    <div className="overflow-x-auto w-full">
+    <div className="overflow-x-auto w-full px-8">
       <table className="table">
         {/* head */}
         <thead>

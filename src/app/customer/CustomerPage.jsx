@@ -3,14 +3,16 @@ import React, { useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import LogoAndText from "@/components/LogoAndText";
 import { useAtom } from "jotai";
-import { customerChangeAtom } from "../../../jotai/CustomersAtoms";
+import { customerQueueAtom } from "../../../jotai/CustomersAtoms";
 import axios from "axios";
+import { response } from "express";
 
 function CustomerPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const projectName = searchParams.get("projectname");
+  const [customerqueue, setCustomerqueue] = useAtom(customerQueueAtom);
   const [customerform, setCustomerform] = useState({
     customerName: "",
     customerNumber: "",
@@ -28,6 +30,8 @@ function CustomerPage() {
         customerStrength: customerform.customerStrength,
         projectId: id,
       });
+      console.log(response.data.queueNumber);
+      setCustomerqueue(response.data.queueNumber);
     } catch (error) {
       console.error(error);
     } finally {
@@ -38,7 +42,9 @@ function CustomerPage() {
         customerStrength: "",
         projectId: "",
       }));
-      router.push(`/customer/queue_number`);
+      router.push(
+        `/customer/${response.data.projectId}?queueno=${response.data.queueNumber}`
+      );
     }
   }
 
