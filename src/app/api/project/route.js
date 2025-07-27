@@ -28,10 +28,14 @@ export async function POST(request) {
   }
 }
 
-export async function GET() {
+export async function GET(request) {
   try {
+    const { searchParams } = new URL(request.url);
+    const email = searchParams.get("email");
+
     await connectionToMongoDb();
-    const projects = await Project.find();
+    const user = await User.findOne({ email });
+    const projects = await Project.find({ userId: user._id });
     return NextResponse.json(projects, { status: 200 });
   } catch (err) {
     console.error(err);

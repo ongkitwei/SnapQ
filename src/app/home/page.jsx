@@ -21,10 +21,17 @@ function page() {
   let id;
 
   useEffect(() => {
+    if (!session) return;
+
     async function getProjects() {
       try {
         setLoading(true);
-        const response = await axios.get("/api/project");
+
+        const response = await axios.get(`/api/project`, {
+          params: {
+            email: session.user.email,
+          },
+        });
         setProjects(response.data);
       } catch (error) {
         console.error("Error fetching projects:", error);
@@ -32,8 +39,9 @@ function page() {
         setLoading(false);
       }
     }
+
     getProjects();
-  }, []);
+  }, [session]);
 
   return (
     <div className="p-6 flex flex-col items-center justify-start min-h-screen">
